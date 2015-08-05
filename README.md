@@ -6,9 +6,9 @@ Excess Kurtosis
 
 The [excess kurtosis](https://en.wikipedia.org/wiki/Kurtosis) for a [Student t](https://en.wikipedia.org/wiki/Student t_distribution) random variable is
 
-<div class="equation" align="center" data-raw-text="\gamma_2 = \begin{cases} \frac{6}{\nu-4} & \text{ for } \nu > 4 \\
-\infty & \text{ for } 2 < \nu \le 4 \end{cases} " data-equation="eq:ekurtosis">
-	<img src="" alt="Excess kurtosis for a Student t distribution.">
+<div class="equation" align="center" data-raw-text="\gamma_2 = \begin{cases} \frac{6}{\nu-4} &amp; \text{ for } \nu > 4 \\
+\infty &amp; \text{ for } 2 < \nu \le 4 \end{cases} " data-equation="eq:ekurtosis">
+	<img src="https://cdn.rawgit.com/distributions-io/t-ekurtosis/68a478931188e659761bf411fac3d42dea0f3299/docs/img/eqn.svg" alt="Excess kurtosis for a Student t distribution.">
 	<br>
 </div>
 
