@@ -1,18 +1,18 @@
-Ekurtosis
+Excess Kurtosis
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependencies][dependencies-image]][dependencies-url]
 
 > [Student t](https://en.wikipedia.org/wiki/Student t_distribution) distribution [ekurtosis](https://en.wikipedia.org/wiki/ekurtosis).
 
-The [ekurtosis](https://en.wikipedia.org/wiki/ekurtosis) for a [Student t](https://en.wikipedia.org/wiki/Student t_distribution) random variable is
+The [excess kurtosis](https://en.wikipedia.org/wiki/Kurtosis) for a [Student t](https://en.wikipedia.org/wiki/Student t_distribution) random variable is
 
-<div class="equation" align="center" data-raw-text="\operatorname{}\left[ X \right] = " data-equation="eq:ekurtosis">
-	<img src="" alt="ekurtosis for a Student t distribution.">
+<div class="equation" align="center" data-raw-text="\gamma_2 = \begin{cases} \frac{6}{\nu-4} & \text{ for } \nu > 4 \\
+\infty & \text{ for } 2 < \nu \le 4 \end{cases} " data-equation="eq:ekurtosis">
+	<img src="" alt="Excess kurtosis for a Student t distribution.">
 	<br>
 </div>
 
-where `v > 0` is the degrees of freedom.
-
+`v > 0` is the degrees of freedom of the distribution. For any `v <= 2`, the [excess kurtosis](https://en.wikipedia.org/wiki/Kurtosis) is undefined. In this case, NaN is returned by this module.
 
 ## Installation
 
@@ -31,7 +31,7 @@ var ekurtosis = require( 'distributions-t-ekurtosis' );
 
 #### ekurtosis( v[, opts] )
 
-Computes the [ekurtosis](https://en.wikipedia.org/wiki/ekurtosis) for a [Student t](https://en.wikipedia.org/wiki/Student t_distribution) distribution with parameter `v`. `v` may be either a [`number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), an [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array), a [`typed array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays), or a [`matrix`](https://github.com/dstructs/matrix).
+Computes the [excess kurtosis](https://en.wikipedia.org/wiki/Kurtosis) for a [Student t](https://en.wikipedia.org/wiki/Student t_distribution) distribution with parameter `v`. `v` may be either a [`number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number), an [`array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array), a [`typed array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays), or a [`matrix`](https://github.com/dstructs/matrix).
 
 ``` javascript
 var matrix = require( 'dstructs-matrix' ),
@@ -41,27 +41,27 @@ var matrix = require( 'dstructs-matrix' ),
 	i;
 
 out = ekurtosis( 2 );
-// returns ~Infinity
+// returns +Infinity
 
 v = [ 2, 4, 8, 16 ];
 out = ekurtosis( v );
 
-// returns [ ~Infinity, ~Infinity, ~1.500, ~0.500 ]
+// returns [ +Infinity, +Infinity, 1.5, 0.5 ]
 
 v = new Float32Array( v );
 out = ekurtosis( v );
-// returns Float64Array( [~Infinity,~Infinity,~1.500,~0.500] )
+// returns Float64Array( [+Infinity,+Infinity,1.5,0.5] )
 
 v =  matrix( [ 2, 4, 8, 16 ], [2,2] );
 /*
-	[ 2 4,
+	[ 2 4
 	  8 16 ]
 */
 
 out = ekurtosis( v );
 /*
-	[ ~Infinity ~Infinity,
-	  ~1.500 ~0.500 ]
+	[ +Infinity +Infinity
+	  1.5 0.5 ]
 */
 ```
 
@@ -90,7 +90,7 @@ function getValue( d, i ) {
 var out = ekurtosis( v, {
 	'accessor': getValue
 });
-// returns [ ~Infinity, ~Infinity, ~1.500, ~0.500 ]
+// returns [ +Infinity, +Infinity, 1.5, 0.5 ]
 ```
 
 To [deepset](https://github.com/kgryte/utils-deep-set) an object `array`, provide a key path and, optionally, a key path separator.
@@ -106,10 +106,10 @@ var v = [
 var out = ekurtosis( v, 'x|1', '|' );
 /*
 	[
-		{'x':[9,~Infinity]},
-		{'x':[9,~Infinity]},
-		{'x':[9,~1.500]},
-		{'x':[9,~0.500]},
+		{'x':[9,+Infinity]},
+		{'x':[9,+Infinity]},
+		{'x':[9,1.5]},
+		{'x':[9,0.5]},
 	]
 */
 
@@ -150,14 +150,14 @@ v = [ 2, 4, 8, 16 ];
 out = ekurtosis( v, {
 	'copy': false
 });
-// returns [ ~Infinity, ~Infinity, ~1.500, ~0.500 ]
+// returns [ +Infinity, +Infinity, 1.5, 0.5 ]
 
 bool = ( data === out );
 // returns true
 
 mat = matrix( [ 2, 4, 8, 16 ], [2,2] );
 /*
-	[ 2 4,
+	[ 2 4
 	  8 16 ]
 */
 
@@ -165,8 +165,8 @@ out = ekurtosis( mat, {
 	'copy': false
 });
 /*
-	[ ~Infinity ~Infinity,
-	  ~1.500 ~0.500 ]
+	[ +Infinity +Infinity
+	  1.5 0.5 ]
 */
 
 bool = ( mat === out );
@@ -252,7 +252,7 @@ var v,
 // Plain arrays...
 v = new Array( 10 );
 for ( i = 0; i < v.length; i++ ) {
-	v[ i ] = i;
+	v[ i ] = i + 1;
 }
 out = ekurtosis( v );
 
@@ -283,7 +283,7 @@ out = ekurtosis( v, {
 // Typed arrays...
 v = new Float64Array( 10 );
 for ( i = 0; i < v.length; i++ ) {
-	v[ i ] = i;
+	v[ i ] = i + 1;
 }
 out = ekurtosis( v );
 

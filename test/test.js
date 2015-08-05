@@ -131,8 +131,8 @@ describe( 'compute-ekurtosis', function tests() {
 	});
 
 	it( 'should compute the distribution ekurtosis when provided a number', function test() {
-		assert.closeTo( ekurtosis( 2 ), +Infinity, 1e-5 );
-		assert.closeTo( ekurtosis( 4  ), +Infinity, 1e-5 );
+		assert.strictEqual( ekurtosis( 2 ), +Infinity );
+		assert.strictEqual( ekurtosis( 4  ), +Infinity );
 		assert.closeTo( ekurtosis( 8  ), 1.5, 1e-5 );
 		assert.closeTo( ekurtosis( 16  ), 0.5, 1e-5 );
 	});
@@ -267,8 +267,8 @@ describe( 'compute-ekurtosis', function tests() {
 		d1 = new Float64Array( 25 );
 		d2 = new Float64Array( 25 );
 		for ( i = 0; i < d1.length; i++ ) {
-			d1[ i ] = i / 10;
-			d2[ i ] = EKURTOSIS( i / 10 );
+			d1[ i ] = i;
+			d2[ i ] = EKURTOSIS( i );
 		}
 		mat = matrix( d1, [5,5], 'float64' );
 		out = ekurtosis( mat );

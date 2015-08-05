@@ -28,8 +28,8 @@ describe( 'number ekurtosis', function tests() {
 	});
 
 	it( 'should compute the distribution ekurtosis', function test() {
-		assert.closeTo( ekurtosis( 2 ), +Infinity, 1e-5 );
-		assert.closeTo( ekurtosis( 4  ), +Infinity, 1e-5 );
+		assert.strictEqual( ekurtosis( 2 ), +Infinity );
+		assert.strictEqual( ekurtosis( 4  ), +Infinity );
 		assert.closeTo( ekurtosis( 8  ), 1.5, 1e-5 );
 		assert.closeTo( ekurtosis( 16  ), 0.5, 1e-5 );
 	});

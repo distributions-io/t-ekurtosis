@@ -1,7 +1,7 @@
 {
   "name": "distributions-t-ekurtosis",
   "version": "0.0.0",
-  "description": "Student t distribution ekurtosis.",
+  "description": "Student's t distribution excess kurtosis.",
   "author": {
     "name": "Philipp Burckhardt",
     "email": "pburckhardt@outlook.com"
@@ -28,9 +28,11 @@
     "probability",
     "statistics",
     "stats",
-    "expected value",
-    "expectation",
-    "mean"
+    "dispersion",
+    "descriptive",
+    "kurtosis",
+    "shape",
+    "peakedness"
   ],
   "bugs": {
     "url": "https://github.com/compute-io/t-ekurtosis/issues"
@@ -39,7 +41,7 @@
     "compute-array-constructors": "^1.0.0",
     "dstructs-matrix": "^2.0.0",
     "utils-deep-get": "^1.0.0",
-    "utils-deep-set": "^1.0.1", 
+    "utils-deep-set": "^1.0.1",
     "validate.io-number-primitive": "^1.0.0",
     "validate.io-nonnegative-integer": "^1.0.0",
     "validate.io-string-primitive": "^1.0.0",
